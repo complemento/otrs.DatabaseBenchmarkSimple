@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<otrs_package version="1.0">
+    <Name>DatabaseBenchmarkSimple</Name>
+    <Version>5.0.4</Version>
+    <Framework>5.0.x</Framework>
+    <Vendor>Complemento [Free]</Vendor>
+    <URL>http://www.complemento.net.br/</URL>
+    <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
+    <Description Lang="en">Verifies System settings and gives performance tips. Based on old Support AddOn of OTRS AG</Description>
+    <Description Lang="de">Das Support-Assessment-Modul prüft fehlerhafte System-Einstellungen und gibt Performance-Tips.</Description>
+    <Description Lang="es">Comprueba configuraciones del sistema y brinda consejos de rendimiento.</Description>
+    <Filelist>
+        <File Permission="644" Location="Kernel/Config/Files/Support.xml" />
+        <File Permission="644" Location="Kernel/Language/de_Support.pm" />
+        <File Permission="644" Location="Kernel/Language/es_MX_Support.pm" />
+        <File Permission="644" Location="Kernel/Modules/AdminSupport.pm" />
+        <File Permission="644" Location="Kernel/Output/HTML/Templates/Standard/AdminSupport.tt" />
+        <File Permission="644" Location="Kernel/Output/HTML/Templates/Standard/AdminSupportLicenseText.tt" />
+        <File Permission="644" Location="Kernel/System/Support.pm" />
+        <File Permission="644" Location="Kernel/System/Support/Database.pm" />
+        <File Permission="644" Location="Kernel/System/Support/Database/oracle.pm" />
+        <File Permission="644" Location="Kernel/System/Support/Database/mssql.pm" />
+        <File Permission="644" Location="Kernel/System/Support/Database/postgresql.pm" />
+        <File Permission="644" Location="Kernel/System/Support/Database/mysql.pm" />
+        <File Permission="644" Location="Kernel/cpan-lib/Archive/Tar/Constant.pm" />
+        <File Permission="644" Location="Kernel/cpan-lib/Archive/Tar/File.pm" />
+        <File Permission="644" Location="Kernel/cpan-lib/Archive/Tar.pm" />
+        <File Permission="644" Location="var/httpd/htdocs/skins/Agent/default/css/Support.Default.css" />
+        <File Permission="644" Location="Custom/DatabaseBenchmarkSimple.sopm" />
+    </Filelist>
+    <IntroInstall Type="post" Title="Notice - Introduction" Lang="en">The Support assessment module provides system checks and can help to find setup errors. After installation it can be accessed from the Administration Interface, in the System Administration panel.</IntroInstall>
+    <IntroInstall Type="post" Title="Hinweis - Einführung" Lang="de">Das Support-Assessment-Modul bietet Systemüberprüfungen an, mit denen Einrichtungsfehler erkannt werden können. Nach der Installation kann es über den Administrationsbereich im Abschnitt System-Administration aufgerufen werden.</IntroInstall>
+    <IntroInstall Type="post" Title="Notice - Introduction" Lang="es">El módulo de evaluación de soporte proporciona comprobaciones del sistema y puede ayudar a encontrar errores de configuración. Después de la instalación se puede acceder desde la Interfaz de Administración, en el panel de administración del sistema.</IntroInstall>
+    <DatabaseInstall>
+        <TableCreate Name="support_bench_test">
+            <Column Name="name_a" Required="true" Size="60" Type="VARCHAR" />
+            <Column Name="name_b" Required="true" Size="60" Type="VARCHAR" />
+            <Index Name="support_index_bench_test_name_a">
+                <IndexColumn Name="name_a" />
+            </Index>
+        </TableCreate>
+    </DatabaseInstall>
+    <DatabaseUpgrade>
+        <TableCreate Name="support_bench_test" Version="1.0.8">
+            <Column Name="name_a" Required="true" Size="60" Type="VARCHAR" />
+            <Column Name="name_b" Required="true" Size="60" Type="VARCHAR" />
+            <Index Name="support_index_bench_test_name_a">
+                <IndexColumn Name="name_a" />
+            </Index>
+        </TableCreate>
+    </DatabaseUpgrade>
+    <DatabaseUninstall>
+        <TableDrop Name="support_bench_test" />
+    </DatabaseUninstall>
+</otrs_package>
